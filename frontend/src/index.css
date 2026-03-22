@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+html, body, #root {
+  background-color: #000000 !important;
+  color: #e0e0e0;
+  font-family: 'Comfortaa', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+:root {
+  --theme-purple: #8b5cf6;
+  --theme-purple-hover: #7c3aed;
+  --theme-purple-transparent: rgba(139, 92, 246, 0.15);
+}
+.text-purple { color: var(--theme-purple) !important; }
+.bg-purple { background-color: var(--theme-purple) !important; color: #fff; }
+.accent-border-purple { border-top: 3px solid var(--theme-purple) !important; }
+[data-bs-theme="dark"] .btn-primary {
+  background-color: var(--theme-purple) !important;
+  border-color: var(--theme-purple) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+[data-bs-theme="dark"] .btn-primary:hover {
+  background-color: var(--theme-purple-hover) !important;
+}
+.sidebar {
+  width: 260px;
+  background-color: #050505 !important;
+  border-right: 1px solid #1a1a1a;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
+  padding-top: 2rem;
+}
+.sidebar .nav-link {
+  color: #9e9e9e;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin: 0 0.8rem 0.5rem 0.8rem;
+  transition: all 0.2s ease;
+}
+.sidebar .nav-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.sidebar .nav-link.active {
+  color: #ffffff;
+  background-color: var(--theme-purple-transparent);
+  box-shadow: inset 0px 0px 10px rgba(139, 92, 246, 0.2);
+}
+.sidebar .nav-link i {
+  font-size: 1.1rem;
+  width: 24px;
+  color: var(--theme-purple); 
+}
+.main-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  background-color: #000000;
+}
+[data-bs-theme="dark"] .card {
+  background-color: #120b1c !important; 
+  border: 1px solid #231938 !important; 
+  border-radius: 8px;
+  box-shadow: none !important;
+  transform: none !important;
+}
+[data-bs-theme="dark"] .form-control {
+  background-color: #0b0712 !important; 
+  border: 1px solid #231938 !important; 
+  color: #fff !important;
+  border-radius: 6px;
+  font-family: 'Comfortaa', sans-serif;
+}
+[data-bs-theme="dark"] .form-control:focus {
+  border-color: var(--theme-purple) !important;
+  box-shadow: none !important;
+}
+[data-bs-theme="dark"] .list-group-item {
+  background-color: transparent !important; 
+  border-color: #1a1a1a !important;    
+}
+.text-muted { color: #888888 !important; }
+.badge { border-radius: 4px; font-weight: 600; padding: 0.4rem 0.6rem; }
+@media (max-width: 768px) {
+  .sidebar { width: 60px; padding-top: 1rem; }
+  .sidebar span.link-text, .sidebar .navbar-brand span { display: none; }
+  .sidebar .nav-link { margin: 0.2rem; justify-content: center; padding: 0.75rem; }
+  .sidebar .nav-link i { margin: 0 !important; }
+  .main-content { margin-left: 60px; }
+}
+
+/* Make date picker calendar icon purple using CSS filters */
+[data-bs-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(220deg) brightness(1.2);
+  cursor: pointer;
+}

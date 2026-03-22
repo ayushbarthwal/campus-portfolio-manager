@@ -2,23 +2,19 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
 import { AuthContext } from '../../AuthContext';
-
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
     if (!email || !password) {
       setError('Please fill out all fields.');
       return;
     }
-
     try {
       const res = await api.post('login.php', { email, password });
       if (res.data.success) {
@@ -35,7 +31,6 @@ const LoginForm = () => {
       }
     }
   };
-
   return (
     <div className="card p-4 mx-auto" style={{ maxWidth: '400px' }}>
       <h3 className="mb-3 text-center">Login</h3>
@@ -64,5 +59,4 @@ const LoginForm = () => {
     </div>
   );
 };
-
 export default LoginForm;

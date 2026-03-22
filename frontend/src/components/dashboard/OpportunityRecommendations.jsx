@@ -1,5 +1,4 @@
 import React from 'react';
-
 const OpportunityRecommendations = ({ recommendations, onSelect }) => {
   if (!recommendations || recommendations.length === 0) {
     return (
@@ -8,12 +7,10 @@ const OpportunityRecommendations = ({ recommendations, onSelect }) => {
       </div>
     );
   }
-
   const sortedRecs = [...recommendations].sort((a, b) => b.readinessPercentage - a.readinessPercentage);
-
   return (
     <div className="card shadow-sm h-100">
-      <div className="card-header bg-white">
+      <div className="card-header">
         <h5 className="mb-0">Recommended Opportunities</h5>
       </div>
       <div className="list-group list-group-flush">
@@ -37,5 +34,4 @@ const OpportunityRecommendations = ({ recommendations, onSelect }) => {
     </div>
   );
 };
-
 export default OpportunityRecommendations;

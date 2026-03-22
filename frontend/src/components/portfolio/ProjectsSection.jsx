@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import api from '../../api';
-
 const ProjectsSection = ({ projects, onUpdate }) => {
   const [formData, setFormData] = useState({ name: '', description: '', techStack: '', link: '' });
   const [error, setError] = useState(null);
-
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.description) return;
-
     setError(null);
     const updatedProjects = [...projects, formData];
     try {
@@ -25,16 +21,14 @@ const ProjectsSection = ({ projects, onUpdate }) => {
       setError('An error occurred while adding project.');
     }
   };
-
   return (
     <div className="card mb-4 p-4 shadow-sm">
-      <h3 className="mb-3">Projects</h3>
+      <h5 className="mb-4 fw-bold"><i className="bi bi-folder-fill me-2 text-purple"></i>Projects</h5>
       {error && <div className="alert alert-danger p-2">{error}</div>}
-      
-      <div className="row mb-4">
+      <div className="row mb-5">
         {projects.map((proj, idx) => (
-          <div key={idx} className="col-md-6 mb-3">
-            <div className="card h-100 bg-light">
+          <div key={idx} className="col-md-6 mb-4">
+            <div className="card h-100 accent-border-purple">
               <div className="card-body">
                 <h5 className="card-title">{proj.name}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">{proj.techStack}</h6>
@@ -46,7 +40,6 @@ const ProjectsSection = ({ projects, onUpdate }) => {
         ))}
         {projects.length === 0 && <p className="text-muted">No projects added yet.</p>}
       </div>
-
       <h5>Add New Project</h5>
       <form onSubmit={handleAdd}>
         <div className="mb-3">
@@ -68,5 +61,4 @@ const ProjectsSection = ({ projects, onUpdate }) => {
     </div>
   );
 };
-
 export default ProjectsSection;

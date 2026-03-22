@@ -4,11 +4,9 @@ import PortfolioHeader from '../components/portfolio/PortfolioHeader';
 import SkillsSection from '../components/portfolio/SkillsSection';
 import ProjectsSection from '../components/portfolio/ProjectsSection';
 import CertificationsSection from '../components/portfolio/CertificationsSection';
-
 const PortfolioPage = () => {
   const [portfolio, setPortfolio] = useState(null);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchPortfolio = async () => {
       try {
@@ -24,10 +22,8 @@ const PortfolioPage = () => {
     };
     fetchPortfolio();
   }, []);
-
   if (loading) return <div>Loading portfolio...</div>;
   if (!portfolio) return <div className="alert alert-warning">Could not load portfolio data.</div>;
-
   return (
     <div>
       <PortfolioHeader name={portfolio.name} email={portfolio.email} />
@@ -46,5 +42,4 @@ const PortfolioPage = () => {
     </div>
   );
 };
-
 export default PortfolioPage;

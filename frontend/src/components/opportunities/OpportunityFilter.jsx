@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-
 const OpportunityFilter = ({ onFilterChange }) => {
   const [type, setType] = useState('all');
   const [sort, setSort] = useState('asc');
-
   const handleTypeChange = (e) => {
     setType(e.target.value);
     onFilterChange({ type: e.target.value, sort });
   };
-
   const handleSortChange = (e) => {
     setSort(e.target.value);
     onFilterChange({ type, sort: e.target.value });
   };
-
   return (
     <div className="card mb-4 p-3 bg-light">
       <div className="row g-3">
@@ -37,5 +33,4 @@ const OpportunityFilter = ({ onFilterChange }) => {
     </div>
   );
 };
-
 export default OpportunityFilter;

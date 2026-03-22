@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import api from '../../api';
-
 const SkillsSection = ({ skills, onUpdate }) => {
   const [newSkill, setNewSkill] = useState('');
   const [error, setError] = useState(null);
-
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!newSkill.trim()) return;
-    
     setError(null);
     const updatedSkills = [...skills, newSkill.trim()];
     try {
@@ -23,7 +20,6 @@ const SkillsSection = ({ skills, onUpdate }) => {
       setError('An error occurred.');
     }
   };
-
   const handleRemove = async (indexToRemove) => {
     setError(null);
     const updatedSkills = skills.filter((_, idx) => idx !== indexToRemove);
@@ -38,14 +34,13 @@ const SkillsSection = ({ skills, onUpdate }) => {
       setError('An error occurred.');
     }
   };
-
   return (
     <div className="card mb-4 p-4 shadow-sm">
-      <h3 className="mb-3">Skills</h3>
+      <h5 className="mb-4 fw-bold"><i className="bi bi-lightning-charge me-2 text-purple"></i>Skills</h5>
       {error && <div className="alert alert-danger p-2">{error}</div>}
-      <div className="mb-3">
+      <div className="mb-4">
         {skills.map((skill, idx) => (
-          <span key={idx} className="badge bg-secondary fs-6 me-2 mb-2 p-2">
+          <span key={idx} className="badge bg-dark border border-secondary text-light fs-6 me-2 mb-2 p-2 px-3">
             {skill} <i className="ms-2" style={{ cursor: 'pointer' }} onClick={() => handleRemove(idx)}>&times;</i>
           </span>
         ))}
@@ -64,5 +59,4 @@ const SkillsSection = ({ skills, onUpdate }) => {
     </div>
   );
 };
-
 export default SkillsSection;

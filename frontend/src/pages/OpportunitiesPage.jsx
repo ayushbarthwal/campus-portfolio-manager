@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import OpportunityFilter from '../components/opportunities/OpportunityFilter';
 import OpportunityList from '../components/opportunities/OpportunityList';
-
 const OpportunitiesPage = () => {
   const [opportunities, setOpportunities] = useState([]);
   const [filteredOpportunities, setFilteredOpportunities] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchOpportunities = async () => {
       try {
@@ -24,32 +22,25 @@ const OpportunitiesPage = () => {
     };
     fetchOpportunities();
   }, []);
-
   const handleFilterChange = (filter) => {
     let filtered = [...opportunities];
-    
     if (filter.type !== 'all') {
       filtered = filtered.filter(opp => opp.type === filter.type);
     }
-    
     filtered.sort((a, b) => {
       const dateA = new Date(a.deadline);
       const dateB = new Date(b.deadline);
       return filter.sort === 'asc' ? dateA - dateB : dateB - dateA;
     });
-
     setFilteredOpportunities(filtered);
   };
-
   if (loading) return <div>Loading opportunities...</div>;
-
   return (
     <div>
-      <h2 className="mb-4">Opportunities</h2>
+      <h4 className="mb-4 fw-bold"><i className="bi bi-compass me-2 text-primary"></i>Explore Opportunities</h4>
       <OpportunityFilter onFilterChange={handleFilterChange} />
       <OpportunityList opportunities={filteredOpportunities} />
     </div>
   );
 };
-
 export default OpportunitiesPage;

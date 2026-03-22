@@ -4,12 +4,10 @@ import StatsBar from '../components/dashboard/StatsBar';
 import ReadinessCard from '../components/dashboard/ReadinessCard';
 import SkillGapCard from '../components/dashboard/SkillGapCard';
 import OpportunityRecommendations from '../components/dashboard/OpportunityRecommendations';
-
 const DashboardPage = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,20 +27,16 @@ const DashboardPage = () => {
     };
     fetchData();
   }, []);
-
   if (loading) return <div>Loading dashboard...</div>;
   if (!data) return <div className="alert alert-warning">Could not load dashboard data.</div>;
-
   return (
     <div>
-      <h2 className="mb-4">Student Dashboard</h2>
-      
+      <h2 className="mb-4 d-inline-block">Student Dashboard</h2>
       <StatsBar 
         totalSkills={data.totalSkills || 0} 
         totalProjects={data.totalProjects || 0} 
         totalOpportunities={data.recommendations ? data.recommendations.length : 0} 
       />
-
       <div className="row">
         <div className="col-lg-8">
           {selectedOpportunity ? (
@@ -68,5 +62,4 @@ const DashboardPage = () => {
     </div>
   );
 };
-
 export default DashboardPage;

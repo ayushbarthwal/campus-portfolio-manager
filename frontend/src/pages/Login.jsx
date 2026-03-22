@@ -1,7 +1,6 @@
 import React from 'react';
 import LoginForm from '../components/auth/LoginForm';
 import { Link } from 'react-router-dom';
-
 const Login = () => {
   return (
     <div className="mt-5">
@@ -12,5 +11,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

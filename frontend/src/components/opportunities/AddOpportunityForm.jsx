@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import api from '../../api';
-
 const AddOpportunityForm = () => {
   const [formData, setFormData] = useState({
     title: '',
@@ -10,19 +9,15 @@ const AddOpportunityForm = () => {
     required_skills: ''
   });
   const [message, setMessage] = useState(null);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage({ type: 'info', text: 'Submitting...' });
-    
     try {
       const skillsArray = formData.required_skills.split(',').map(s => s.trim()).filter(s => s);
       const payload = { ...formData, required_skills: skillsArray.join(',') };
-      
       const res = await api.post('opportunities.php', payload);
       if (res.data.success) {
         setMessage({ type: 'success', text: 'Opportunity added successfully!' });
@@ -34,7 +29,6 @@ const AddOpportunityForm = () => {
       setMessage({ type: 'danger', text: 'An error occurred.' });
     }
   };
-
   return (
     <div className="card p-4 mx-auto" style={{ maxWidth: '600px' }}>
       <h3 className="mb-4">Add New Opportunity</h3>
@@ -71,5 +65,4 @@ const AddOpportunityForm = () => {
     </div>
   );
 };
-
 export default AddOpportunityForm;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
-
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,20 +10,16 @@ const RegisterForm = () => {
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
     if (!formData.name || !formData.email || !formData.password || !formData.role) {
       setError('Please fill out all fields.');
       return;
     }
-
     try {
       const res = await api.post('register.php', formData);
       if (res.data.success) {
@@ -36,7 +31,6 @@ const RegisterForm = () => {
       setError('An error occurred during registration.');
     }
   };
-
   return (
     <div className="card p-4 mx-auto" style={{ maxWidth: '400px' }}>
       <h3 className="mb-3 text-center">Register</h3>
@@ -85,5 +79,4 @@ const RegisterForm = () => {
     </div>
   );
 };
-
 export default RegisterForm;

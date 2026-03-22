@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import api from '../../api';
-
 const CertificationsSection = ({ certifications, onUpdate }) => {
   const [formData, setFormData] = useState({ name: '', issuer: '', date: '' });
   const [error, setError] = useState(null);
-
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.issuer) return;
-
     setError(null);
     const updatedCerts = [...certifications, formData];
     try {
@@ -25,26 +21,23 @@ const CertificationsSection = ({ certifications, onUpdate }) => {
       setError('An error occurred.');
     }
   };
-
   return (
-    <div className="card mb-4 p-4 shadow-sm">
-      <h3 className="mb-3">Certifications</h3>
+    <div className="card mb-4 p-4 shadow-sm border-0">
+      <h5 className="mb-4 fw-bold"><i className="bi bi-award me-2 text-purple"></i>Certifications</h5>
       {error && <div className="alert alert-danger p-2">{error}</div>}
-      
       <ul className="list-group mb-4">
         {certifications.map((cert, idx) => (
           <li key={idx} className="list-group-item d-flex justify-content-between align-items-start">
             <div>
               <div className="fw-bold">{cert.name}</div>
-              {cert.issuer}
+              <div className="text-muted small">{cert.issuer}</div>
             </div>
-            {cert.date && <span className="badge bg-primary rounded-pill">{cert.date}</span>}
+            {cert.date && <span className="badge bg-purple rounded-pill">{cert.date}</span>}
           </li>
         ))}
         {certifications.length === 0 && <p className="text-muted">No certifications added yet.</p>}
       </ul>
-
-      <h5>Add New Certification</h5>
+      <h6 className="fw-bold mb-3 mt-4 text-muted">Add New Certification</h6>
       <form onSubmit={handleAdd}>
         <div className="row g-2 mb-3">
           <div className="col-md-4">
@@ -57,12 +50,11 @@ const CertificationsSection = ({ certifications, onUpdate }) => {
             <input type="date" name="date" className="form-control" value={formData.date} onChange={handleChange} />
           </div>
           <div className="col-md-1">
-            <button type="submit" className="btn btn-primary w-100">+</button>
+            <button type="submit" className="btn btn-primary w-100"><i className="bi bi-plus-lg"></i></button>
           </div>
         </div>
       </form>
     </div>
   );
 };
-
 export default CertificationsSection;
